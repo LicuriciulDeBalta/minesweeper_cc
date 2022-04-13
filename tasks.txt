@@ -1,0 +1,10 @@
+Minesweeper
+-UI //made from keyboard characters//
+-Forming a Matrix //of fixed size 9x9//
+-Generating Mine Spawn Location //after first placement//
+-Game Loop //where input is taken and parsed//
+-Revealing Extra Squares
+-Checking for Ending
+*Timer
+*Fixed Mine Count //always 10 mines//
+*Flag Placement
