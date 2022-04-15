@@ -26,13 +26,21 @@ def display_matrix(): # Displays the 'fake' values
 def update_matrix(i, j): # Input is taken from keyboard & validated in main
     # if player_input == '?': matrix_ui[i][j] = '?'
     # else:
-    matrix_ui[i][j] = symbol[matrix[i][j]][-1]
+    matrix_ui[i][j] = symbols[matrix[i][j]][-1]
     if matrix[i][j] == 0:
-        if matrix[i + 1][j] == 0: update_matrix(i + 1, j)
-        if matrix[i][j + 1] == 0: update_matrix(i, j + 1)
-        if matrix[i - 1][j] == 0: update_matrix(i - 1, j)
-        if matrix[i][j - 1] == 0: update_matrix(i, j - 1)
-
+        try:
+            if matrix[i + 1][j] == 0: update_matrix(i + 1, j)
+        except IndexError: pass
+        try:
+            if matrix[i][j + 1] == 0: update_matrix(i, j + 1)
+        except IndexError: pass
+        try:
+            if matrix[i - 1][j] == 0: update_matrix(i - 1, j)
+        except IndexError: pass
+        try:
+            if matrix[i][j - 1] == 0: update_matrix(i, j - 1)
+        except IndexError: pass
+        
 def space_is_available(i, j):
     if matrix_ui[i][j] == '\u2588': return True
     return False
@@ -42,10 +50,10 @@ def generate_mines(i, j):
     while no < 9:
         die1 = random.randint(0, 8)
         die2 = random.randint(0, 8)
-        if space_is_available(die1, die2) == True && (die1 != i || die2 != j):
+        if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
             matrix[die1][die2] == -1
             no += 1
-    # generate_numbers()
+    generate_numbers()
 
 def generate_numbers():
     for i in range(0, 9):
