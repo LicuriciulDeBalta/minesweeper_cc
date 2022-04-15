@@ -6,11 +6,13 @@ def generate_matrix(): # Actual values
         matrix.append([])
         for j in range(0, 9):
             matrix[i].append(0)
+
 def generate_matrix_interface(): # Displayed values
     for i in range(0, 9):
         matrix_ui.append([])
         for j in range(0, 9):
             matrix_ui[i].append(symbols[0][0])
+
 def display_matrix(): # Displays the 'fake' values
     for i in range(0, 9):
         print(i + 1, end = '')
@@ -18,16 +20,20 @@ def display_matrix(): # Displays the 'fake' values
         print()
     print(' ', end = '')
     for i in range(0, 9): print(i + 1, end = '')
-def update_matrix(i, j): # Input is taken & validated in main
-    if player_input == '?': matrix_ui[i][j] = '?'
-    else:
-        matrix_ui[i][j] = symbol[matrix[i][j]][-1]
-        if matrix[i][j] == 0:
-            if matrix[i + 1][j] == 0: update_matrix(i + 1, j)
-            elif matrix[i][j + 1] == 0: update_matrix(i, j + 1)
-            elif matrix[i - 1][j] == 0: update_matrix(i - 1, j)
-            elif matrix[i][j - 1] == 0: update_matrix(i, j - 1)
+    print()
+
+def update_matrix(i, j): # Input is taken from keyboard & validated in main
+    # if player_input == '?': matrix_ui[i][j] = '?'
+    # else:
+    matrix_ui[i][j] = symbol[matrix[i][j]][-1]
+    if matrix[i][j] == 0:
+        if matrix[i + 1][j] == 0: update_matrix(i + 1, j)
+        if matrix[i][j + 1] == 0: update_matrix(i, j + 1)
+        if matrix[i - 1][j] == 0: update_matrix(i - 1, j)
+        if matrix[i][j - 1] == 0: update_matrix(i, j - 1)
+
+def space_is_available(i, j):
+    if matrix_ui[i][j] == '\u2588': return True
+    return False
 # def generate_mines(first_placement):
-generate_matrix()
-generate_matrix_interface()
-display_matrix()
+# def navigate_matrix():
