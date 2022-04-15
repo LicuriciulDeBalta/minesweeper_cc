@@ -40,11 +40,39 @@ def space_is_available(i, j):
 def generate_mines(i, j):
     no = 0
     while no < 9:
-        die1 = random.randint(0, 9)
-        die2 = random.randint(0, 9)
+        die1 = random.randint(0, 8)
+        die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True && (die1 != i || die2 != j):
             matrix[die1][die2] == -1
             no += 1
     # generate_numbers()
-# def generate_numbers():
+
+def generate_numbers():
+    for i in range(0, 9):
+        for j in range(0, 9):
+            try:
+                if matrix[i - 1][j - 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i - 1][j] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i - 1][j + 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i][j - 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i][j + 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i + 1][j - 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i + 1][j] == -1: matrix[i][j] += 1
+            except IndexError: pass
+            try:
+                if matrix[i + 1][j + 1] == -1: matrix[i][j] += 1
+            except IndexError: pass
+
 # def navigate_matrix():
