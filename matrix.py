@@ -1,3 +1,4 @@
+import random
 matrix = []
 matrix_ui = []
 symbols = {-1: ('\u2588', '*'), 0: ('\u2588', ' '), 1: ('\u2588', 1), 2: ('\u2588', 2), 3: ('\u2588', 3), 4: ('\u2588', 4), 5: ('\u2588', 5), 6: ('\u2588', 6), 7: ('\u2588', 7), 8: ('\u2588', 8), '?': None}  # \u2588 means █, \u1F4A3 means Ὂ in unicode
@@ -35,5 +36,15 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
 def space_is_available(i, j):
     if matrix_ui[i][j] == '\u2588': return True
     return False
-# def generate_mines(first_placement):
+
+def generate_mines(i, j):
+    no = 0
+    while no < 9:
+        die1 = random.randint(0, 9)
+        die2 = random.randint(0, 9)
+        if space_is_available(die1, die2) == True && (die1 != i || die2 != j):
+            matrix[die1][die2] == -1
+            no += 1
+    # generate_numbers()
+# def generate_numbers():
 # def navigate_matrix():
