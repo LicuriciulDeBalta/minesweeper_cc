@@ -31,19 +31,19 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
         try:
             if matrix[i + 1][j] == 0 and matrix_ui[i][j] == '\u2588':
                 update_matrix(i + 1, j)
-        except IndexError: pass
+        except IndexError: print("Index error circumvented.")
         try:
             if matrix[i][j + 1] == 0 and matrix_ui[i][j] == '\u2588':
                 update_matrix(i, j + 1)
-        except IndexError: pass
+        except IndexError: print("Index error circumvented.")
         try:
             if matrix[i - 1][j] == 0 and matrix_ui[i][j] == '\u2588':
                 update_matrix(i - 1, j)
-        except IndexError: pass
+        except IndexError: print("Index error circumvented.")
         try:
             if matrix[i][j - 1] == 0 and matrix_ui[i][j] == '\u2588':
                 update_matrix(i, j - 1)
-        except IndexError: pass
+        except IndexError: print("Index error circumvented.")
 
 def space_is_available(i, j):
     if matrix_ui[i][j] == '\u2588': return True
@@ -56,6 +56,7 @@ def generate_mines(i, j):
         die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
             matrix[die1][die2] == -1
+            update_matrix(die1, die2)
             no += 1
     generate_numbers()
 
@@ -64,28 +65,28 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
         for j in range(0, 9):
             try:
                 if matrix[i - 1][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i - 1][j] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i - 1][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i + 1][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i + 1][j] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
             try:
                 if matrix[i + 1][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: pass
+            except IndexError: print("Index error circumvented.")
 
 def reveal_matrix(): # For troubleshooting
     for i in range(0, 9):
