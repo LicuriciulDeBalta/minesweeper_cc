@@ -59,7 +59,7 @@ def generate_mines(i, j):
             no += 1
     generate_numbers()
 
-def generate_numbers():
+def generate_numbers(): # Tiles always display the number of mines within a 1 tile radius
     for i in range(0, 9):
         for j in range(0, 9):
             try:
@@ -86,5 +86,11 @@ def generate_numbers():
             try:
                 if matrix[i + 1][j + 1] == -1: matrix[i][j] += 1
             except IndexError: pass
+
+def reveal_matrix(): # For troubleshooting
+    for i in range(0, 9):
+        for j in range(0, 9):
+            matrix_ui[i][j] = symbols[matrix[i][j]][-1]
+    display_matrix()
 
 # def navigate_matrix():
