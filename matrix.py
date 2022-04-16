@@ -29,18 +29,22 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
     matrix_ui[i][j] = symbols[matrix[i][j]][-1]
     if matrix[i][j] == 0:
         try:
-            if matrix[i + 1][j] == 0: update_matrix(i + 1, j)
+            if matrix[i + 1][j] == 0 and matrix_ui[i][j] == '\u2588':
+                update_matrix(i + 1, j)
         except IndexError: pass
         try:
-            if matrix[i][j + 1] == 0: update_matrix(i, j + 1)
+            if matrix[i][j + 1] == 0 and matrix_ui[i][j] == '\u2588':
+                update_matrix(i, j + 1)
         except IndexError: pass
         try:
-            if matrix[i - 1][j] == 0: update_matrix(i - 1, j)
+            if matrix[i - 1][j] == 0 and matrix_ui[i][j] == '\u2588':
+                update_matrix(i - 1, j)
         except IndexError: pass
         try:
-            if matrix[i][j - 1] == 0: update_matrix(i, j - 1)
+            if matrix[i][j - 1] == 0 and matrix_ui[i][j] == '\u2588':
+                update_matrix(i, j - 1)
         except IndexError: pass
-        
+
 def space_is_available(i, j):
     if matrix_ui[i][j] == '\u2588': return True
     return False
