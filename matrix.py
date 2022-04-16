@@ -28,8 +28,8 @@ def display_matrix(): # Displays the 'fake' values
 def update_matrix(i, j): # Input is taken from keyboard & validated in main
     # if player_input == '?': matrix_ui[i][j] = '?'
     # else:
-    matrix_ui[i][j] = symbols[matrix[i][j]][-1]
-    print(i, "and", j, "were updated.")
+    matrix_ui[i][j] = symbols[matrix[i][j]][1]
+    print("Positions", i, "and", j, "with value", matrix[i][j], "were updated with symbol:", matrix_ui[i][j])
     if matrix[i][j] == 0:
         try:
             if matrix[i + 1][j] == 0 and space_is_available(i, j) == True:
@@ -58,8 +58,8 @@ def generate_mines(i, j):
         die1 = random.randint(0, 8)
         die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
-            matrix[die1][die2] == -1
-            print("Generated Mine no.", no + 1, "at", i, j, "********")
+            matrix[die1][die2] = -1 # THE '=' WAS A '==' AND I DID NOT SEE
+            print("Generated Mine no.", no + 1, "at", die1, die2, "******** New value:", matrix[die1][die2])
             update_matrix(die1, die2)
             no += 1
     generate_numbers()
