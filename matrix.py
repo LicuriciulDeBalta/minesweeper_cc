@@ -6,13 +6,15 @@ def generate_matrix(): # Actual values
     for i in range(0, 9):
         matrix.append([])
         for j in range(0, 9):
-            matrix[i].append(0)
+            matrix[i].append(0) # Everything is 0
+    print("Matrix Generated Successfully.")
 
 def generate_matrix_interface(): # Displayed values
     for i in range(0, 9):
         matrix_ui.append([])
         for j in range(0, 9):
-            matrix_ui[i].append(symbols[0][0])
+            matrix_ui[i].append(symbols[0][0]) # Everything is █
+    print("Interface Generated Successfully.")
 
 def display_matrix(): # Displays the 'fake' values
     for i in range(0, 9):
@@ -21,29 +23,30 @@ def display_matrix(): # Displays the 'fake' values
         print()
     print(' ', end = '')
     for i in range(0, 9): print(i + 1, end = '')
-    print()
+    print("\nDisplayed Current State Matrix.")
 
 def update_matrix(i, j): # Input is taken from keyboard & validated in main
     # if player_input == '?': matrix_ui[i][j] = '?'
     # else:
     matrix_ui[i][j] = symbols[matrix[i][j]][-1]
+    print(i, "and", j, "were updated.")
     if matrix[i][j] == 0:
         try:
-            if matrix[i + 1][j] == 0 and matrix_ui[i][j] == '\u2588':
+            if matrix[i + 1][j] == 0 and space_is_available(i, j) == True:
                 update_matrix(i + 1, j)
-        except IndexError: print("Index error circumvented.")
+        except IndexError: print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i][j + 1] == 0 and matrix_ui[i][j] == '\u2588':
+            if matrix[i][j + 1] == 0 and space_is_available(i, j) == True:
                 update_matrix(i, j + 1)
-        except IndexError: print("Index error circumvented.")
+        except IndexError: print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i - 1][j] == 0 and matrix_ui[i][j] == '\u2588':
+            if matrix[i - 1][j] == 0 and space_is_available(i, j) == True:
                 update_matrix(i - 1, j)
-        except IndexError: print("Index error circumvented.")
+        except IndexError: print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i][j - 1] == 0 and matrix_ui[i][j] == '\u2588':
+            if matrix[i][j - 1] == 0 and space_is_available(i, j) == True:
                 update_matrix(i, j - 1)
-        except IndexError: print("Index error circumvented.")
+        except IndexError: print("Index error circumvented for indexes", i, j)
 
 def space_is_available(i, j):
     if matrix_ui[i][j] == '\u2588': return True
@@ -56,6 +59,7 @@ def generate_mines(i, j):
         die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
             matrix[die1][die2] == -1
+            print("Generated Mine no.", no + 1, "at", i, j, "********")
             update_matrix(die1, die2)
             no += 1
     generate_numbers()
@@ -63,30 +67,32 @@ def generate_mines(i, j):
 def generate_numbers(): # Tiles always display the number of mines within a 1 tile radius
     for i in range(0, 9):
         for j in range(0, 9):
-            try:
-                if matrix[i - 1][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i - 1][j] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i - 1][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i + 1][j - 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i + 1][j] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
-            try:
-                if matrix[i + 1][j + 1] == -1: matrix[i][j] += 1
-            except IndexError: print("Index error circumvented.")
+            if matrix[i][j] == 0: # I was missing this
+                try:
+                    if matrix[i - 1][j - 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i - 1][j] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i - 1][j + 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i][j - 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i][j + 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i + 1][j - 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i + 1][j] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                try:
+                    if matrix[i + 1][j + 1] == -1: matrix[i][j] += 1
+                except IndexError: print("Index error circumvented for indexes", i, j)
+                print("Generated number", matrix[i][j], "at", i, j)
 
 def reveal_matrix(): # For troubleshooting
     for i in range(0, 9):
