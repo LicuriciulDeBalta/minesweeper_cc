@@ -4,9 +4,13 @@ print("Welcome to Minesweeper! Uncover all the rectangles while avoiding the min
 matrix.generate_matrix()
 matrix.generate_matrix_interface()
 matrix.display_matrix()
-
-player_i = int(input("Awaiting input for horizontal axis(i):")) - 1
-player_j = int(input("Awaiting input for vertical axis(j):")) - 1
+while True:
+    try:
+        player_i = int(input("Awaiting input for horizontal axis(i):")) - 1
+        player_j = int(input("Awaiting input for vertical axis(j):")) - 1
+        break
+    except ValueError:
+        print("Try a number between 1 and 9.")
 if player_i in range(0, 9) and player_j in range(0, 9):
     matrix.generate_mines(player_i, player_j)
     matrix.generate_numbers()
