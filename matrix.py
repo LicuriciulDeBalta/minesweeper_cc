@@ -55,7 +55,7 @@ def space_is_available(i, j):
 
 def generate_mines(i, j):
     no = 0
-    while no < 9:
+    while no < 10: # Modify to change number of mines
         die1 = random.randint(0, 8)
         die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
