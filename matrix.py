@@ -32,20 +32,21 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
     matrix_ui[i][j] = symbols[matrix[i][j]][1]
     # print("Positions", i, "and", j, "with value", matrix[i][j], "were updated with symbol:", matrix_ui[i][j])
     if matrix[i][j] == 0:
+        # I messed up again with the arguments
         try:
-            if matrix[i + 1][j] == 0 and space_is_available(i, j) == True:
+            if matrix[i + 1][j] == 0 and space_is_available(i + 1, j) == True:
                 update_matrix(i + 1, j)
         except IndexError: pass #print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i][j + 1] == 0 and space_is_available(i, j) == True:
+            if matrix[i][j + 1] == 0 and space_is_available(i, j + 1) == True:
                 update_matrix(i, j + 1)
         except IndexError: pass #print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i - 1][j] == 0 and space_is_available(i, j) == True:
+            if matrix[i - 1][j] == 0 and space_is_available(i - 1, j) == True and (i - 1 >= 0):
                 update_matrix(i - 1, j)
         except IndexError: pass #print("Index error circumvented for indexes", i, j)
         try:
-            if matrix[i][j - 1] == 0 and space_is_available(i, j) == True:
+            if matrix[i][j - 1] == 0 and space_is_available(i, j - 1) == True and (j - 1 >= 0):
                 update_matrix(i, j - 1)
         except IndexError: pass #print("Index error circumvented for indexes", i, j)
 
