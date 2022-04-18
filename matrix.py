@@ -60,7 +60,7 @@ def generate_mines(i, j):
         die2 = random.randint(0, 8)
         if space_is_available(die1, die2) == True and (die1 != i or die2 != j):
             matrix[die1][die2] = -1 # THE '=' WAS A '==' AND I DID NOT SEE
-            # print("Generated Mine no.", no + 1, "at", die1, die2, "******** New value:", matrix[die1][die2])
+            print("Generated Mine no.", no + 1, "at", die1, die2, "******** New value:", matrix[die1][die2])
             # update_matrix(die1, die2)
             no += 1
     generate_numbers()
@@ -70,49 +70,49 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
         for j in range(0, 9):
             if matrix[i][j] == 0: # I was missing this
                 try:
-                    if matrix[i - 1][j - 1] == -1:
+                    if matrix[i - 1][j - 1] == -1 and (i - 1 >= 0) and (j - 1 >= 0):
                         print("Mine found at", i - 1, j - 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i - 1][j] == -1:
+                    if matrix[i - 1][j] == -1 and (i - 1 >= 0) and (j >= 0):
                         print("Mine found at", i - 1, j)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i - 1][j + 1] == -1:
+                    if matrix[i - 1][j + 1] == -1 and (i - 1 >= 0) and (j + 1 >= 0):
                         print("Mine found at", i - 1, j + 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i][j - 1] == -1:
+                    if matrix[i][j - 1] == -1 and (i >= 0) and (j - 1 >= 0):
                         print("Mine found at", i, j - 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i][j + 1] == -1:
+                    if matrix[i][j + 1] == -1 and (i >= 0) and (j + 1 >= 0):
                         print("Mine found at", i, j + 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i + 1][j - 1] == -1:
+                    if matrix[i + 1][j - 1] == -1 and (i + 1 >= 0) and (j - 1 >= 0):
                         print("Mine found at", i + 1, j - 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i + 1][j] == -1:
+                    if matrix[i + 1][j] == -1 and (i + 1 >= 0) and (j >= 0):
                         print("Mine found at", i + 1, j)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
-                    if matrix[i + 1][j + 1] == -1:
+                    if matrix[i + 1][j + 1] == -1 and (i + 1 >= 0) and (j + 1 >= 0):
                         print("Mine found at", i + 1, j + 1)
                         matrix[i][j] += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
