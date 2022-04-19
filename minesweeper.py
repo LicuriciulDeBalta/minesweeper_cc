@@ -1,6 +1,6 @@
 import matrix
 print("Welcome to Minesweeper! Uncover all the rectangles while avoiding the mines to win!")
-counter = 0
+# matrix.counter = 0
 matrix.generate_matrix()
 matrix.generate_matrix_interface()
 matrix.display_matrix()
@@ -36,8 +36,8 @@ while True: # Input
             if matrix.matrix_ui[player_i][player_j] == '*':
                 print("GAME OVER")
                 break
-            counter += 1
-            if counter == 71:
+            matrix.counter += 1
+            if matrix.counter == 71:
                 print("YOU WIN")
                 matrix.reveal_matrix()
         else: print("Position already revealed.")

@@ -2,6 +2,7 @@ import random
 matrix = []
 matrix_ui = []
 symbols = {-1: ('\u2588', '*'), 0: ('\u2588', ' '), 1: ('\u2588', 1), 2: ('\u2588', 2), 3: ('\u2588', 3), 4: ('\u2588', 4), 5: ('\u2588', 5), 6: ('\u2588', 6), 7: ('\u2588', 7), 8: ('\u2588', 8), '?': None}  # \u2588 means █, \u1F4A3 means Ὂ in unicode
+counter = 0
 def generate_matrix(): # Actual values
     for i in range(0, 9):
         matrix.append([])
@@ -30,6 +31,7 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
     # if player_input == '?': matrix_ui[i][j] = '?'
     # else:
     matrix_ui[i][j] = symbols[matrix[i][j]][1]
+    counter += 1
     # print("Positions", i, "and", j, "with value", matrix[i][j], "were updated with symbol:", matrix_ui[i][j])
     if matrix[i][j] == 0:
         # I messed up again with the arguments
@@ -74,48 +76,56 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                     if matrix[i - 1][j - 1] == -1 and (i - 1 >= 0) and (j - 1 >= 0):
                         print("Mine found at", i - 1, j - 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i - 1][j] == -1 and (i - 1 >= 0) and (j >= 0):
                         print("Mine found at", i - 1, j)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i - 1][j + 1] == -1 and (i - 1 >= 0) and (j + 1 >= 0):
                         print("Mine found at", i - 1, j + 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i][j - 1] == -1 and (i >= 0) and (j - 1 >= 0):
                         print("Mine found at", i, j - 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i][j + 1] == -1 and (i >= 0) and (j + 1 >= 0):
                         print("Mine found at", i, j + 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i + 1][j - 1] == -1 and (i + 1 >= 0) and (j - 1 >= 0):
                         print("Mine found at", i + 1, j - 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i + 1][j] == -1 and (i + 1 >= 0) and (j >= 0):
                         print("Mine found at", i + 1, j)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try:
                     if matrix[i + 1][j + 1] == -1 and (i + 1 >= 0) and (j + 1 >= 0):
                         print("Mine found at", i + 1, j + 1)
                         matrix[i][j] += 1
+                        counter += 1
                         print("Positions", i, j, "now hold the value", matrix[i][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 # print("Generated number", matrix[i][j], "at", i, j)
