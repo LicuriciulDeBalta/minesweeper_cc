@@ -112,7 +112,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i - 1][j - 1] += 1
                         if matrix[i - 1][j - 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i - 1, j - 1, "now hold the value", matrix[i - 1][j - 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Up
                     if matrix[i - 1][j] != -1 and (i - 1 >= 0) and (j >= 0):
@@ -120,7 +120,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i - 1][j] += 1
                         if matrix[i - 1][j] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i - 1, j, "now hold the value", matrix[i - 1][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Up Right
                     if matrix[i - 1][j + 1] != -1 and (i - 1 >= 0) and (j + 1 >= 0):
@@ -128,7 +128,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i - 1][j + 1] += 1
                         if matrix[i - 1][j + 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i - 1, j + 1, "now hold the value", matrix[i - 1][j + 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Left
                     if matrix[i][j - 1] != -1 and (i >= 0) and (j - 1 >= 0):
@@ -136,7 +136,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i][j - 1] += 1
                         if matrix[i][j - 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i, j - 1, "now hold the value", matrix[i][j - 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Right
                     if matrix[i][j + 1] != -1 and (i >= 0) and (j + 1 >= 0):
@@ -144,7 +144,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i][j + 1] += 1
                         if matrix[i][j + 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i, j + 1, "now hold the value", matrix[i][j + 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Down Left
                     if matrix[i + 1][j - 1] != -1 and (i + 1 >= 0) and (j - 1 >= 0):
@@ -152,7 +152,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i + 1][j - 1] += 1
                         if matrix[i + 1][j - 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i + 1, j - 1, "now hold the value", matrix[i + 1][j - 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Down
                     if matrix[i + 1][j] != -1 and (i + 1 >= 0) and (j >= 0):
@@ -160,7 +160,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i + 1][j] += 1
                         if matrix[i + 1][j] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i + 1, j, "now hold the value", matrix[i + 1][j])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 try: # Down Right
                     if matrix[i + 1][j + 1] != -1 and (i + 1 >= 0) and (j + 1 >= 0):
@@ -168,7 +168,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
                         matrix[i + 1][j + 1] += 1
                         if matrix[i + 1][j + 1] == 1: counter += 1
                         # counter += 1
-                        # print("Positions", i, j, "now hold the value", matrix[i][j])
+                        print("Positions", i + 1, j + 1, "now hold the value", matrix[i + 1][j + 1])
                 except IndexError: pass #print("Index error circumvented for indexes", i, j)
                 # print("Generated number", matrix[i][j], "at", i, j)
 
