@@ -14,8 +14,8 @@ while True: # Input
             player_j = int(input("Try a number between 1 and 9.\n")) - 1
         matrix.generate_mines(player_i, player_j)
         matrix.update_matrix(player_i, player_j)
-        # matrix.display_matrix()
-        matrix.reveal_matrix()
+        matrix.display_matrix()
+        # matrix.reveal_matrix()
         break
     except ValueError:
         print("Try a number.\n")

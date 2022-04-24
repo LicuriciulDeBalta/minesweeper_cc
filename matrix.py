@@ -36,15 +36,16 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
     # print("Positions", i, "and", j, "with value", matrix[i][j], "were updated with symbol:", matrix_ui[i][j])
     if matrix[i][j] == 0:
         # I messed up again with the arguments
+        # These could've been replaced by a method
         try: # Down
             if matrix[i + 1][j] == 0 and space_is_available(i + 1, j) == True:
                 update_matrix(i + 1, j)
             else:
                 matrix_ui[i + 1][j] = symbols[matrix[i][j]][1]
-                if matrix[i][j - 1] != 0 and space_is_available(i, j - 1):
+                if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1) and (j - 1 >= 0): # Down Left
                     matrix_ui[i + 1][j - 1] = symbols[matrix[i + 1][j - 1]][1]
                     counter += 1
-                elif matrix[i][j + 1] != 0 and space_is_available(i, j + 1):
+                elif matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1): # Down Right
                     matrix_ui[i + 1][j + 1] = symbols[matrix[i + 1][j + 1]][1]
                     counter += 1
         except IndexError: pass #print("Index error circumvented for indexes", i, j)
@@ -53,7 +54,7 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 update_matrix(i, j + 1)
             else:
                 matrix_ui[i][j + 1] = symbols[matrix[i][j]][1]
-                if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1):
+                if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1) and (i - 1 >= 0):
                     matrix_ui[i - 1][j + 1] = symbols[matrix[i - 1][j + 1]][1]
                     counter += 1
                 elif matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1):
@@ -65,7 +66,7 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 update_matrix(i - 1, j)
             elif (i - 1 >= 0):
                 matrix_ui[i - 1][j] = symbols[matrix[i][j]][1]
-                if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1):
+                if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (j - 1 >= 0):
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
                 elif matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1):
@@ -77,7 +78,7 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 update_matrix(i, j - 1)
             elif (j - 1 >= 0):
                 matrix_ui[i][j - 1] = symbols[matrix[i][j]][1]
-                if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1):
+                if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (i - 1 >= 0):
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
                 elif matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1):
