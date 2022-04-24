@@ -106,6 +106,7 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
     for i in range(0, 9):
         for j in range(0, 9):
             if matrix[i][j] == -1: # I was missing this
+                # These could've definitely be replaced by a method
                 try: # Up Left
                     if matrix[i - 1][j - 1] != -1 and (i - 1 >= 0) and (j - 1 >= 0):
                         # print("Mine found at", i - 1, j - 1)

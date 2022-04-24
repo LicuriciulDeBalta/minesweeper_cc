@@ -13,7 +13,6 @@ while True: # Input
         while player_j < 0 or player_j > 8:
             player_j = int(input("Try a number between 1 and 9.\n")) - 1
         matrix.generate_mines(player_i, player_j)
-        matrix.generate_numbers()
         matrix.update_matrix(player_i, player_j)
         # matrix.display_matrix()
         matrix.reveal_matrix()
