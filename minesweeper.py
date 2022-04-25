@@ -36,7 +36,7 @@ while True: # Input
                 print("GAME OVER")
                 break
             matrix.counter += 1
-            if matrix.counter == 71:
+            if matrix.counter == 70:
                 print("YOU WIN")
                 matrix.reveal_matrix()
         else: print("Position already revealed.")

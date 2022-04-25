@@ -19,10 +19,12 @@ def generate_matrix_interface(): # Displayed values
 
 def display_matrix(): # Displays the 'fake' values
     for i in range(0, 9):
-        print(i + 1, end = '')
+        print(i + 1, end = '#')
         for j in range(0, 9): print(matrix_ui[i][j], end = '') # Parsing each line
         print()
-    print(' ', end = '')
+    print('  ', end = '')
+    for i in range(0, 9): print('#', end = '')
+    print('\n  ', end = '')
     for i in range(0, 9): print(i + 1, end = '')
     print()
     # print("\nDisplayed Current State Matrix.")
