@@ -34,11 +34,13 @@ while True: # Input
             matrix.display_matrix()
             if matrix.matrix_ui[player_i][player_j] == '*':
                 print("GAME OVER")
+                matrix.reveal_matrix()
                 break
             matrix.counter += 1
             if matrix.counter == 70:
                 print("YOU WIN")
                 matrix.reveal_matrix()
+                break
         else: print("Position already revealed.")
     except ValueError:
         print("Try a number.\n")
