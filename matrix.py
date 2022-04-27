@@ -31,17 +31,18 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
     counter += 1
     matrix_ui[i][j] = symbols[matrix[i][j]][1]
     if matrix[i][j] == 0:
-        # These could've been replaced by a method
         try: # Down
             if matrix[i + 1][j] == 0 and space_is_available(i + 1, j) == True:
                 update_matrix(i + 1, j)
             else:
                 matrix_ui[i + 1][j] = symbols[matrix[i + 1][j]][1]
                 counter += 1
-                if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1) and (j - 1 >= 0): # Down Left
+                if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1) and (j - 1 >= 0):
+                    # Down Left
                     matrix_ui[i + 1][j - 1] = symbols[matrix[i + 1][j - 1]][1]
                     counter += 1
-                if matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1): # Down Right
+                if matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1):
+                    # Down Right
                     matrix_ui[i + 1][j + 1] = symbols[matrix[i + 1][j + 1]][1]
                     counter += 1
         except IndexError: pass
@@ -52,9 +53,11 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 matrix_ui[i][j + 1] = symbols[matrix[i][j + 1]][1]
                 counter += 1
                 if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1) and (i - 1 >= 0):
+                    # Up Right
                     matrix_ui[i - 1][j + 1] = symbols[matrix[i - 1][j + 1]][1]
                     counter += 1
                 if matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1):
+                    # Down Right
                     matrix_ui[i + 1][j + 1] = symbols[matrix[i + 1][j + 1]][1]
                     counter += 1
         except IndexError: pass
@@ -65,9 +68,11 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 matrix_ui[i - 1][j] = symbols[matrix[i - 1][j]][1]
                 counter += 1
                 if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (j - 1 >= 0):
+                    # Up Left
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
                 if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1):
+                    # Up Right
                     matrix_ui[i - 1][j + 1] = symbols[matrix[i - 1][j + 1]][1]
                     counter += 1
         except IndexError: pass
@@ -78,9 +83,11 @@ def update_matrix(i, j): # Input is taken from keyboard & validated in main
                 matrix_ui[i][j - 1] = symbols[matrix[i][j - 1]][1]
                 counter += 1
                 if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (i - 1 >= 0):
+                    # Up Left
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
                 if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1):
+                    # Down Left
                     matrix_ui[i + 1][j - 1] = symbols[matrix[i + 1][j - 1]][1]
                     counter += 1
         except IndexError: pass
@@ -104,38 +111,20 @@ def generate_numbers(): # Tiles always display the number of mines within a 1 ti
         for j in range(0, 9):
             if matrix[i][j] == -1:
                 # These could've definitely been replaced by a method
-                try: # Up Left
-                    if matrix[i - 1][j - 1] != -1 and (i - 1 >= 0) and (j - 1 >= 0):
-                        matrix[i - 1][j - 1] += 1
-                except IndexError: pass
-                try: # Up
-                    if matrix[i - 1][j] != -1 and (i - 1 >= 0) and (j >= 0):
-                        matrix[i - 1][j] += 1
-                except IndexError: pass
-                try: # Up Right
-                    if matrix[i - 1][j + 1] != -1 and (i - 1 >= 0) and (j + 1 >= 0):
-                        matrix[i - 1][j + 1] += 1
-                except IndexError: pass
-                try: # Left
-                    if matrix[i][j - 1] != -1 and (i >= 0) and (j - 1 >= 0):
-                        matrix[i][j - 1] += 1
-                except IndexError: pass
-                try: # Right
-                    if matrix[i][j + 1] != -1 and (i >= 0) and (j + 1 >= 0):
-                        matrix[i][j + 1] += 1
-                except IndexError: pass
-                try: # Down Left
-                    if matrix[i + 1][j - 1] != -1 and (i + 1 >= 0) and (j - 1 >= 0):
-                        matrix[i + 1][j - 1] += 1
-                except IndexError: pass
-                try: # Down
-                    if matrix[i + 1][j] != -1 and (i + 1 >= 0) and (j >= 0):
-                        matrix[i + 1][j] += 1
-                except IndexError: pass
-                try: # Down Right
-                    if matrix[i + 1][j + 1] != -1 and (i + 1 >= 0) and (j + 1 >= 0):
-                        matrix[i + 1][j + 1] += 1
-                except IndexError: pass
+                generate_numbers_helper(i - 1, j - 1) # Up Left
+                generate_numbers_helper(i - 1, j) # Up
+                generate_numbers_helper(i - 1, j + 1) # Up Right
+                generate_numbers_helper(i, j - 1) # Left
+                generate_numbers_helper(i, j + 1) # Right
+                generate_numbers_helper(i + 1, j - 1) # Down Left
+                generate_numbers_helper(i + 1, j) # Down
+                generate_numbers_helper(i + 1, j + 1) # Down Right
+
+def generate_numbers_helper(i, j):
+    try:
+        if matrix[i][j] != -1 and (i >= 0) and (j >= 0):
+            matrix[i][j] += 1
+    except IndexError: pass
 
 def reveal_matrix():
     for i in range(0, 9):
