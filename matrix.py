@@ -29,80 +29,72 @@ def display_matrix(): # Displays the 'fake' values
 def update_matrix(i, j): # Input is taken from keyboard & validated in main
     global counter
     counter += 1
-    print("Counter increased. New counter:", counter)
+    print("Counter at start. New counter:", counter)
     matrix_ui[i][j] = symbols[matrix[i][j]][1]
     if matrix[i][j] == 0:
         try: # Down
             if matrix[i + 1][j] == 0 and space_is_available(i + 1, j) == True:
                 update_matrix(i + 1, j)
             else:
-                matrix_ui[i + 1][j] = symbols[matrix[i + 1][j]][1]
-                counter += 1
-                print("Counter increased. New counter:", counter)
+                if space_is_available(i + 1, j) == True:
+                    matrix_ui[i + 1][j] = symbols[matrix[i + 1][j]][1]
+                    counter += 1
                 if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1) and (j - 1 >= 0):
                     # Down Left
                     matrix_ui[i + 1][j - 1] = symbols[matrix[i + 1][j - 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
                 if matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1):
                     # Down Right
                     matrix_ui[i + 1][j + 1] = symbols[matrix[i + 1][j + 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
         except IndexError: pass
         try: # Right
             if matrix[i][j + 1] == 0 and space_is_available(i, j + 1) == True:
                 update_matrix(i, j + 1)
             else:
-                matrix_ui[i][j + 1] = symbols[matrix[i][j + 1]][1]
-                counter += 1
-                print("Counter increased. New counter:", counter)
+                if space_is_available(i, j + 1) == True:
+                    matrix_ui[i][j + 1] = symbols[matrix[i][j + 1]][1]
+                    counter += 1
                 if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1) and (i - 1 >= 0):
                     # Up Right
                     matrix_ui[i - 1][j + 1] = symbols[matrix[i - 1][j + 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
                 if matrix[i + 1][j + 1] != 0 and space_is_available(i + 1, j + 1):
                     # Down Right
                     matrix_ui[i + 1][j + 1] = symbols[matrix[i + 1][j + 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
         except IndexError: pass
         try: # Up
             if matrix[i - 1][j] == 0 and space_is_available(i - 1, j) == True and (i - 1 >= 0):
                 update_matrix(i - 1, j)
             elif (i - 1 >= 0):
-                matrix_ui[i - 1][j] = symbols[matrix[i - 1][j]][1]
-                counter += 1
-                print("Counter increased. New counter:", counter)
+                if space_is_available(i - 1, j) == True:
+                    matrix_ui[i - 1][j] = symbols[matrix[i - 1][j]][1]
+                    counter += 1
                 if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (j - 1 >= 0):
                     # Up Left
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
                 if matrix[i - 1][j + 1] != 0 and space_is_available(i - 1, j + 1):
                     # Up Right
                     matrix_ui[i - 1][j + 1] = symbols[matrix[i - 1][j + 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
         except IndexError: pass
         try: # Left
             if matrix[i][j - 1] == 0 and space_is_available(i, j - 1) == True and (j - 1 >= 0):
                 update_matrix(i, j - 1)
             elif (j - 1 >= 0):
-                matrix_ui[i][j - 1] = symbols[matrix[i][j - 1]][1]
-                counter += 1
-                print("Counter increased. New counter:", counter)
+                if space_is_available(i, j - 1) == True:
+                    matrix_ui[i][j - 1] = symbols[matrix[i][j - 1]][1]
+                    counter += 1
                 if matrix[i - 1][j - 1] != 0 and space_is_available(i - 1, j - 1) and (i - 1 >= 0):
                     # Up Left
                     matrix_ui[i - 1][j - 1] = symbols[matrix[i - 1][j - 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
                 if matrix[i + 1][j - 1] != 0 and space_is_available(i + 1, j - 1):
                     # Down Left
                     matrix_ui[i + 1][j - 1] = symbols[matrix[i + 1][j - 1]][1]
                     counter += 1
-                    print("Counter increased. New counter:", counter)
         except IndexError: pass
 
 def space_is_available(i, j):

@@ -33,7 +33,7 @@ while True: # Game Loop + Input
                 matrix.reveal_matrix()
                 break
             print(matrix.counter, "spaces revealed.")
-            if matrix.counter >= 70:
+            if matrix.counter >= 72:
                 print("YOU WIN")
                 matrix.reveal_matrix()
                 break
