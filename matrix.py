@@ -29,7 +29,6 @@ def display_matrix(): # Displays the 'fake' values
 def update_matrix(i, j): # Input is taken from keyboard & validated in main
     global counter
     counter += 1
-    print("Counter at start. New counter:", counter)
     matrix_ui[i][j] = symbols[matrix[i][j]][1]
     if matrix[i][j] == 0:
         try: # Down
